@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    jupiterVersion = '5.5.2'
+    appiumVersion = '7.3.0'
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${jupiterVersion}"
+    testImplementation "io.appium:java-client:${appiumVersion}"
+}
+
+test {
+    useJUnitPlatform()
+
+    systemProperties['junit.jupiter.execution.parallel.enabled'] = true
+    systemProperties['junit.jupiter.execution.parallel.mode.default'] = 'concurrent'
+}
